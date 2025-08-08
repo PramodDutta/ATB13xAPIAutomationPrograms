@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Rest Assured Learning ATB13x">
+    <test verbose="2" preserve-order="true" name="ATB13xAPIAutomationPrograms">
+
+<!--        <parameter name="browser" value="firefox"></parameter>-->
+        <parameter name="browser" value="safari"></parameter>
+
+        <classes>
+            <class name="com.thetestingacademy.sample.ex_05_TestNGExamples.APITesting019_TestNG_Parameter"></class>
+        </classes>
+    </test>
+</suite>
