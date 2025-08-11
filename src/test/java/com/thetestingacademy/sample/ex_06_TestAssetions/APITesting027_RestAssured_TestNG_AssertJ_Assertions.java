@@ -3,6 +3,7 @@ package com.thetestingacademy.sample.ex_06_TestAssetions;
 import static org.assertj.core.api.Assertions.*;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -64,6 +65,9 @@ public class APITesting027_RestAssured_TestNG_AssertJ_Assertions {
         String firstname = response.then().extract().path("booking.firstname");
         String lastname = response.then().extract().path("booking.lastname");
 
+        // Another mechanism to extract the Keys, value by JSON Path
+        JsonPath jsonPath = new JsonPath(response.asString());
+        String bookingID1 = jsonPath.getString("bookingid");
 
 
         // TestNG - Extract the details of the firstname, bookingId, lastname from Response.
