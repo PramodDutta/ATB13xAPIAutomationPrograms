@@ -60,14 +60,21 @@ public class APITesting027_RestAssured_TestNG_AssertJ_Assertions {
         validatableResponse.body("booking.depositpaid", Matchers.equalTo(false));
 
 
-        // Extraction ( TestNG or Assertj) IS IMP
+        // Extraction
+        // Concept #1 - Normal( TestNG or Assertj) IS IMP
         bookingId = response.then().extract().path("bookingid");
         String firstname = response.then().extract().path("booking.firstname");
         String lastname = response.then().extract().path("booking.lastname");
 
-        // Another mechanism to extract the Keys, value by JSON Path
-        JsonPath jsonPath = new JsonPath(response.asString());
-        String bookingID1 = jsonPath.getString("bookingid");
+        // Concept #2 - (Jsonpath class) Another mechanism to extract the Keys, value by JSON Path
+        JsonPath jp = new JsonPath(response.asString());
+        String bookingID1 = jp.getString("bookingid");
+
+        assertThat(jp.getInt("bookingid")).isEqualTo(5164);
+        assertThat(jp.getString("booking.firstname")).isEqualTo("pramod");
+        assertThat(jp.getString("booking.lastname")).isEqualTo("Dutta");
+        assertThat(jp.getInt("booking.totalprice")).isEqualTo(3000);
+        assertThat(jp.getBoolean("booking.depositpaid")).isTrue();
 
 
         // TestNG - Extract the details of the firstname, bookingId, lastname from Response.
